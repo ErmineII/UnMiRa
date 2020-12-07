@@ -1,0 +1,41 @@
+<html><head>
+  <title>Unmira</title>
+  <link rel="stylesheet" href="/css/khak.css" type="text/css" id="theme"></link>
+  <link rel="icon" href='/media/NPHotChoc.svg.png'></link>
+</head>
+<body >
+  <div class="gray notes">
+    UnMiRa&nbsp;<sub><a href="/unmira/">about</a></sub>&nbsp;
+  <!-- <button height="35"> -->
+  <image src="/media/moon.svg" id="themech"
+    width="30" height="30" >
+  </image> <!-- </button> -->
+  <script type="text/javascript" src="/js/theme.js">
+  </script>
+  <br>
+  </div>
+  <div class="fg">
+    <blockquote style="text-align: center;" id="interface">
+      <br>
+      <textarea id="screen" rows="30" cols="50" name="text"
+        class="interactive"
+        style="margin: auto; max-width: 90%; font-size: 10pt;
+               font-family: 'bigpix', 'BefontSquare', monospace;"
+        value readonly></textarea>
+      <textarea id="term" rows="15" cols="80"
+        style="margin: auto; max-width: 90%;
+               font-family: 'BefontLegible', monospace;
+               font-size: 20pt;"
+        class="interactive" readonly autofocus></textarea>
+      <br>
+      <input type="search" id="readline"></input>
+      <script src="unmira.js"></script>
+      <script src="fg.js"></script>
+      <script src="term.js"></script>
+      <script>
+        unmira.graphics.setScreen(unmira.header);
+        unmira.state.data.term.run();
+      </script>
+    </blockquote>
+  </div>
+</body></html>
