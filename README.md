@@ -2,7 +2,7 @@
 
 (right now UnMiRa is a virtual machine, a forth-like shell, and a ascii-art font)
 
-![logo](/media/unmira.png)
+![logo](/logo.png)
 
 - `fg.js`: all the input/output/HTML-specific stuff. If someone wanted to
   port it to a new platform, this is what they would change
@@ -22,7 +22,7 @@ by enqueuing a function that will enqueue itself. Data is stored in
 
 ## the "screen"
 
-This is just a `readonly`\* `<textarea>` with [an ascii art font](/media/bigpix-Regular.otf)
+This is just a `readonly`\* `<textarea>` with [an ascii art font](bigpix-Regular.otf)
 that can be drawn on. Try `@source draw` in the shell.
 
 \* this can be changed with `unmira.cmds.screen_editable`
