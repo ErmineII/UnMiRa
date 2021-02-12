@@ -14,7 +14,9 @@ unmira.state.data["anim"] = {
     unmira.state.queue.unshift(
       unmira.cmds._push(true),
       unmira.cmds.screen_editable,
-      unmira.cmds._print(`Commands: .\n`),
+      unmira.cmds._print(
+        "Commands: next(or blank), play, save, upload, del.\n"
+      ),
       loop
     );
     unmira.run();
@@ -24,7 +26,21 @@ unmira.state.data["anim"] = {
     const cmd = unmira.state.stack.pop();
     switch (cmd) {
       case "next":
+      case "":
         unmira.state.data.anim.animation.push(snapshot);
+        unmira.state.queue.unshift(
+          unmira.cmds._print(
+            "now on frame #" + unmira.state.data.anim.animation.length + "\n"
+          )
+        );
+        break;
+      case "del":
+        unmira.state.data.anim.animation.pop();
+        unmira.state.queue.unshift(
+          unmira.cmds._print(
+            "now on frame #" + unmira.state.data.anim.animation.length + "\n"
+          )
+        );
         break;
       case "play":
         unmira.state.queue.unshift(unmira.state.data.anim.playframe(0));
@@ -38,8 +54,29 @@ unmira.state.data["anim"] = {
         document.body.appendChild(a);
         a.click();
         break;
+      case "upload":
+        const f = document.createElement("input");
+        f.type = "file";
+        f.onchange = function () {
+          if (f.files.length <= 0) {
+            return false;
+          }
+          const fr = new FileReader();
+          fr.onload = function (e) {
+            unmira.state.data.anim.animation = JSON.parse(e.target.result);
+            f.remove();
+          };
+          fr.readAsText(f.files.item(0));
+        };
+        document.body.prepend(f);
+        unmira.state.queue.unshift(
+          unmira.cmds._print("Use the file input at the top of the page ^\n")
+        );
+        break;
       default:
-        unmira.state.queue.push(unmira.cmds._print("unknown command: " + cmd));
+        unmira.state.queue.push(
+          unmira.cmds._print("unknown command: " + cmd + "\n")
+        );
     }
     unmira.state.running = true;
   },
@@ -50,9 +87,9 @@ unmira.state.data["anim"] = {
         return;
       }
       unmira.state.queue.unshift(
-        unmira.cmds._push(unmira.state.data.anim.animation[frame]),
+        unmira.cmds._push(unmira.state.data.anim.animation[Math.floor(frame)]),
         unmira.cmds.draw,
-        unmira.state.data.anim.playframe(frame + 1)
+        unmira.state.data.anim.playframe(frame + 0.2) // half the speed
       );
       unmira.state.running = true;
     };

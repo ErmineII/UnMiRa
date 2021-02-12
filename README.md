@@ -1,5 +1,6 @@
 # UnMiRa\*
 
+[use the unmira machine](unmira.html)
 (right now UnMiRa is a virtual machine, a forth-like shell, and a ascii-art font)
 
 ![logo](/logo.png)
@@ -25,5 +26,21 @@ by enqueuing a function that will enqueue itself. Data is stored in
 This is just a `readonly`\* `<textarea>` with [an ascii art font](bigpix-Regular.otf)
 that can be drawn on. Try `@source draw` in the shell.
 
-\* this can be changed with `unmira.cmds.screen_editable`
+\* this can be changed with `unmira.cmds.screen_editable` which will make it
+editable if it pops a true value
 
+## programs
+
+The one available package/program is `anim` in [`anim.js`](anim.js). In the
+shell, type `_anim` to start it. There is currently no way to exit. For each
+frame, edit the screen as text, then type next or a blank line in the console.
+`save` saves the animation as json. `upload` places a file upload button at
+the top of the page to upload a .json file. `play` plays the animation, `del`
+deletes the last frame. I'd add more features if I wasn't pressed for time,
+but I will if you ask me, and you can fork it.
+
+## contributing
+
+Feel free to copy, this is public domain. I'll probably add your changes, and
+if necessary I can change the license to something else if you want protection
+and your changes are substantial enough.
